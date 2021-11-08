@@ -1,9 +1,11 @@
 # CI-CD Apache Atlas config with Gitlab-Runner on your host
-- requirements: Docker, Maven, Helm, Gitlab-Runner, git
+## Configuration of Host machine
+- Requirements: Docker, Maven, Helm, Gitlab-Runner, git. Install all with yum package menager
 - Install Gitlab-Runner using yum package menager: https://docs.gitlab.com/runner/install/linux-repository.html
 - Run Gitlab-Runner on your host: https://docs.gitlab.com/ee/ci/docker/using_docker_build.html
-- sudo gitlab-runner register -n \
-  --url https://gitlab.com/ \
-  --registration-token REGISTRATION_TOKEN \
-  --executor shell \
-  --description "My Runner"
+## Setup CI-CD pipeline
+### Phases
+- mvn test
+- mvn publish packages to Gitlab Package registry
+- build and push Docker image to Gitlab container registry
+- Deploy with Helm to Openshift namespace
